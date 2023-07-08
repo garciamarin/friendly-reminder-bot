@@ -1,0 +1,22 @@
+{
+  "name": "wg_bot",
+  "version": "1.0.0",
+  "description": "A friendly assistance bot for the Schlegel Wg",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/tsc",
+    "start": "nodemon --watch . --ext ts --exec 'npm run build && node index.js'"
+  },
+  "author": "g-dag",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.1.4",
+    "node-telegram-bot-api": "^0.61.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.0",
+    "@types/node-telegram-bot-api": "^0.61.6",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.1.6"
+  }
+}
