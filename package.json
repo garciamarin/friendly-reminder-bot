@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node_modules/.bin/tsc",
-    "start": "nodemon --watch . --ext ts --exec 'npm run build && node index.js'"
+    "dev": "nodemon --watch . --ext ts --exec 'npm run build && node ./build/index.js'"
   },
   "author": "g-dag",
   "license": "ISC",
