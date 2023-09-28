@@ -5,7 +5,7 @@ import { MESSAGES } from "./botMessages";
 config()
 
 let subscribedChats: number[] = []
-let isWgRemindersActive = true
+let isWgRemindersActive = false
 
 const API_TOKEN = process.env.NODE_ENV === 'production'
     ? process.env.API_TOKEN!
@@ -36,6 +36,7 @@ bot.onText(/\/reminders-on/, (msg: Message) => {
             isWgRemindersActive = true
             : subscribedChats.push(chatId)
         bot.sendMessage(chatId, MESSAGES.SUBSCRIBED)
+        scheduleReminders()
     } else bot.sendMessage(chatId, MESSAGES.SUBSCRIBED_FAIL)
 });
 
@@ -62,15 +63,16 @@ function scheduleReminders() {
     const reminders = (chatId: number) => {
         if (currentDate.getDay() === 1) { // Monday with (0 - Sunday, 1 - Monday, ...)
             bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN)
-        } else if (currentDate.getDay() === 4) { // Thursday
-            bot.sendMessage(125636058, MESSAGES.REMINDERS_VEGTABLE_BOX)
+        } else if (currentDate.getDay() === 5) { // Friday
+            bot.sendMessage(chatId, MESSAGES.REMINDERS_VEGTABLE_BOX)
         }
     }
 
     isWgRemindersActive && reminders(WG_CHAT_ID)
     subscribedChats.forEach(chatId => reminders(chatId))
 }
-scheduleReminders
+
+scheduleReminders()
 setInterval(scheduleReminders, 24 * 60 * 60 * 1000)
 
 // helpers
