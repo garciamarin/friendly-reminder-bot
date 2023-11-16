@@ -5,8 +5,8 @@ import { isEvenWeek } from "./utils";
 
 config();
 
-let subscribedChats: number[] = [];
-let isWgRemindersActive = false;
+let subscribedChats: number[] = []
+let isWgRemindersActive = true
 
 const API_TOKEN =
   process.env.NODE_ENV === "production"
@@ -22,6 +22,10 @@ const bot = new TelegramBot(API_TOKEN, { polling: true });
 bot.onText(/\/start/, (msg: Message) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, MESSAGES.START, { parse_mode: "HTML" });
+});
+bot.onText(/\/status/, (msg: Message) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, MESSAGES.STATUS, { parse_mode: "HTML" })
 });
 
 // adds chat to reminders List
@@ -51,8 +55,8 @@ bot.onText(/\/reminders-off/, (msg) => {
     isWgChatId
       ? (isWgRemindersActive = false)
       : (subscribedChats = subscribedChats.filter(
-          (chatId) => chatId !== chatId
-        ));
+        (chatId) => chatId !== chatId
+      ));
     bot.sendMessage(chatId, MESSAGES.UNSUBSCRIBED);
   } else {
     bot.sendMessage(msg.chat.id, MESSAGES.UNSUBSCRIBED_FAIL);
