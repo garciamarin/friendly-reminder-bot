@@ -65,9 +65,9 @@ function scheduleReminders() {
     if (currentDate.getDay() === 1) {
       // Monday with (0 - Sunday, 1 - Monday, ...)
       if (isEvenWeek(currentDate)) {
-        bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN_AWEEK);
+        bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN_EVEN_WEEK);
       } else {
-        bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN_BWEEK);
+        bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN_ODD_WEEK);
       }
     } else if (currentDate.getDay() === 5) {
       // Friday

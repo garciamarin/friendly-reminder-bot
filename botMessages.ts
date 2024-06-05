@@ -20,7 +20,7 @@ MESSAGES.SUBSCRIBED_FAIL = `Chat already susbscribed to /remiders`;
 MESSAGES.UNSUBSCRIBED_FAIL = `Your chat is not even on my list, bby 🧞`;
 
 MESSAGES.REMINDERS_CLEANING_PLAN_EVEN_WEEK = `🧹🪥 This is an automated Putzplan reminder! Left nothing behind! 🧼🫧`;
-MESSAGES.REMINDERS_CLEANING_PLAN = `🧹🪥 This is an automated Putzplan reminder! Shine right like a diamond 🧼🫧`;
+MESSAGES.REMINDERS_CLEANING_PLAN_ODD_WEEK = `🧹🪥 This is an automated Putzplan reminder! Shine right like a diamond 🧼🫧`;
 
 MESSAGES.REMINDERS_VEGTABLE_BOX = `🌶️🥦🥕 This is an automated Gemüsekiste reminder! 🔥🌶️🔥\n
 Unleash your full potential by picking up that box today!`;
