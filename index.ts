@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 import TelegramBot, { type Message } from "node-telegram-bot-api";
-import { M } from "./botMessages";
+import { M, CONFIRM_PICKUP_FAIL } from "./botMessages";
 import { isEvenWeek } from "./utils";
 
 config();
@@ -93,7 +93,7 @@ bot.on("callback_query", (msg) => {
 		bot.sendMessage(msg.message!.chat.id, `✅ ${msg.from.first_name} ${M.CONFIRM_PICKUP}`);
 	}
 	else {
-		bot.sendMessage(msg.message!.chat.id, `❌ ${msg.from.first_name} ${M.CONFIRM_PICKUP_FAIL}`);
+		bot.sendMessage(msg.message!.chat.id, `❌ ${msg.from.first_name} ${CONFIRM_PICKUP_FAIL()}`);
 	}
 });
 

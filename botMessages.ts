@@ -29,8 +29,31 @@ M.REMINDERS_CLEANING_PLAN_ODD_WEEK = `🧹🪥 This is an automated Putzplan rem
 M.REMINDERS_VEGTABLE_BOX = `🌶️🥦🥕 This is an automated Gemüsekiste reminder! 🔥🌶️🔥\n
 Unleash your full potential by picking up that box today!`;
 M.CONFIRM_PICKUP = `will pick up the 🥦🥕🌶️
-\nAll heil to the Königin! 👑
-`;
-M.CONFIRM_PICKUP_FAIL = `can't go (looong Frisurtermin)`;
+\nAll heil to the Königin! 👑`;
 
-export { M };
+const CONFIRM_PICKUP_FAIL = () => `can't go (${getRandomExcuse()})`;
+
+const excuses = [
+    "stuck in traffic behind a tractor",
+    "keys lost in the fridge",
+    "caught in an intense staring contest with a cat",
+    "car hijacked by squirrels",
+    "on a mission to find the perfect avocado",
+    "trapped under an avalanche of laundry",
+    "GPS rerouted me to a pizza place",
+    "mid-crisis over carrot quality",
+    "bike chain tangled in spaghetti",
+    "outwitted by a stubborn jar of pickles",
+    "too busy debating fruit vs. vegetable",
+    "lost in the supermarket’s vegetable aisle",
+    "misread box as bomb",
+    "stuck explaining what kale is",
+    "caught napping under a tree",
+    "too busy chasing runaway tomatoes",
+    "emergency dance-off with a broccoli",
+    "mistook the pickup day for next week",
+    "waiting for onions to stop making me cry",
+    "held hostage by a zucchini rebellion"
+];
+const getRandomExcuse = () => excuses[Math.floor(Math.random() * excuses.length)];
+export { M, CONFIRM_PICKUP_FAIL };

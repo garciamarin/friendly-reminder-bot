@@ -48,7 +48,7 @@ Before you begin, ensure you have the following installed:
 
 ## Development 🛠️
 
-To run the bot in development mode with automatic reloading:
+There are two instances of the bot, one for dev and one running in production. To run the bot in development mode with automatic reloading:
 
 ```bash
 npm run dev
@@ -64,7 +64,13 @@ The bot will be accessible on Telegram, and you can interact with it using the d
 
 ## Production Deployment and Maintenance 🚀
 
-The bot is hosted on [Fly.io](https://fly.io/). To deploy changes to the container, use the following command in the terminal:
+The bot is hosted on Fly.io. To deploy changes to the container, you'll need to install the [Fly.io command line tool](https://fly.io/docs/flyctl/install/) and log in with:
+
+```bash
+fly auth login
+```
+
+People interested in collaborating should contact me to get access to the fly.io project. Once you're logged in, use the following command to deploy changes:
 
 ```bash
 fly deploy --ha=false
@@ -77,8 +83,6 @@ Use the follow command to restart the server:
 ```bash
 fly apps restart friendly-reminder-bot
 ```
-
-People interested in collaborating should contact me to get access to the fly.io project.
 
 ---
 
