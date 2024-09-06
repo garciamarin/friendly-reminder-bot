@@ -63,6 +63,41 @@ bot.onText(/\/reminders-off/, (msg) => {
 	}
 });
 
+// keyboard for Gemüsekiste
+const keyboard = {
+	"reply_markup": {
+		"inline_keyboard": [
+			[{ text: "I'll pick the freakin' thing up!", callback_data: 'yes' }],
+			[{ text: 'hell no!', callback_data: 'no' }],
+		]
+	}
+}
+bot.onText(/\/keyboard/, (msg) => {
+	bot.sendMessage(msg.chat.id, "Can you pick the box this week?/n", keyboard);
+});
+
+// callback from keyboard
+bot.on("callback_query", (msg) => {
+	// on positive response remove Keyboard and confirm 
+	if (msg.data == "yes") {
+		bot.editMessageReplyMarkup(
+			{
+				inline_keyboard: []
+			},
+			{
+				chat_id: msg.message?.chat.id,
+				message_id: msg.message?.message_id,
+				inline_message_id: msg.inline_message_id,
+			}
+		);
+		bot.sendMessage(msg.message!.chat.id, `✅ ${msg.from.first_name} ${M.CONFIRM_PICKUP}`);
+	}
+	else {
+		bot.sendMessage(msg.message!.chat.id, `❌ ${msg.from.first_name} ${M.CONFIRM_PICKUP_FAIL}`);
+	}
+});
+
+
 function scheduleReminders() {
 	const currentDate = new Date();
 	const reminders = (chatId: number) => {
@@ -76,6 +111,7 @@ function scheduleReminders() {
 		} else if (currentDate.getDay() === 5) {
 			// Friday
 			bot.sendMessage(chatId, M.REMINDERS_VEGTABLE_BOX);
+			bot.sendMessage(chatId, "Can you pick the box 896 this week?", keyboard);
 		}
 	};
 
@@ -98,6 +134,19 @@ bot.onText(/\/gimmeId/, (msg) => {
 
 bot.onText(/\/testId/, (msg) => {
 	bot.sendMessage(WG_CHAT_ID, "the provided id seems to be alright, doggo 🐶");
+});
+
+// Removes Fixed keyboards
+bot.onText(/\/removeKey/, (msg) => {
+	bot.sendMessage(msg.chat.id, "keyboard");
+	bot.sendMessage(msg.chat.id, "remove",
+		{
+			"reply_markup": {
+				remove_keyboard: true
+			}
+
+		});
+
 });
 
 function isChatSubscribed(chatId: number) {
