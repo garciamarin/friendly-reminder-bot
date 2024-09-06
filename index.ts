@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 import TelegramBot, { type Message } from "node-telegram-bot-api";
-import { MESSAGES } from "./botMessages";
+import { M } from "./botMessages";
 import { isEvenWeek } from "./utils";
 
 config();
@@ -21,11 +21,11 @@ const bot = new TelegramBot(API_TOKEN, { polling: true });
 // provides info from bot
 bot.onText(/\/start/, (msg: Message) => {
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, MESSAGES.START, { parse_mode: "HTML" });
+	bot.sendMessage(chatId, M.START, { parse_mode: "HTML" });
 });
 bot.onText(/\/status/, (msg: Message) => {
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, MESSAGES.STATUS, { parse_mode: "HTML" });
+	bot.sendMessage(chatId, M.STATUS, { parse_mode: "HTML" });
 });
 
 // adds chat to reminders List
@@ -38,9 +38,9 @@ bot.onText(/\/reminders-on/, (msg: Message) => {
 
 	if (!isRemindersActive) {
 		isWgChatId ? (isWgRemindersActive = true) : subscribedChats.push(chatId);
-		bot.sendMessage(chatId, MESSAGES.SUBSCRIBED);
+		bot.sendMessage(chatId, M.SUBSCRIBED);
 		scheduleReminders();
-	} else bot.sendMessage(chatId, MESSAGES.SUBSCRIBED_FAIL);
+	} else bot.sendMessage(chatId, M.SUBSCRIBED_FAIL);
 });
 
 // removes chat from reminders List
@@ -55,11 +55,11 @@ bot.onText(/\/reminders-off/, (msg) => {
 		isWgChatId
 			? (isWgRemindersActive = false)
 			: (subscribedChats = subscribedChats.filter(
-					(chatId) => chatId !== chatId,
-				));
-		bot.sendMessage(chatId, MESSAGES.UNSUBSCRIBED);
+				(chatId) => chatId !== chatId,
+			));
+		bot.sendMessage(chatId, M.UNSUBSCRIBED);
 	} else {
-		bot.sendMessage(msg.chat.id, MESSAGES.UNSUBSCRIBED_FAIL);
+		bot.sendMessage(msg.chat.id, M.UNSUBSCRIBED_FAIL);
 	}
 });
 
@@ -69,13 +69,13 @@ function scheduleReminders() {
 		if (currentDate.getDay() === 1) {
 			// Monday with (0 - Sunday, 1 - Monday, ...)
 			if (isEvenWeek(currentDate)) {
-				bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN_EVEN_WEEK);
+				bot.sendMessage(chatId, M.REMINDERS_CLEANING_PLAN_EVEN_WEEK);
 			} else {
-				bot.sendMessage(chatId, MESSAGES.REMINDERS_CLEANING_PLAN_ODD_WEEK);
+				bot.sendMessage(chatId, M.REMINDERS_CLEANING_PLAN_ODD_WEEK);
 			}
 		} else if (currentDate.getDay() === 5) {
 			// Friday
-			bot.sendMessage(chatId, MESSAGES.REMINDERS_VEGTABLE_BOX);
+			bot.sendMessage(chatId, M.REMINDERS_VEGTABLE_BOX);
 		}
 	};
 
