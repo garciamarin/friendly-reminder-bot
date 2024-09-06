@@ -9,3 +9,6 @@ node_modules/
 
 #compiled files
 build
+
+# workspace
+.workspace
