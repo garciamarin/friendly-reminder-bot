@@ -26,8 +26,8 @@ M.REMINDERS_CLEANING_PLAN_EVEN_WEEK = `🧹🪥 This is an automated Putzplan re
 M.REMINDERS_CLEANING_PLAN_ODD_WEEK = `🧹🪥 This is an automated Putzplan reminder! Shine right (side) like a diamond 🧼🫧`;
 
 // vegtable box
-M.REMINDERS_VEGTABLE_BOX = `🌶️🥦🥕 This is an automated Gemüsekiste reminder! 🔥🌶️🔥\n
-Unleash your full potential by picking up that box today!`;
+M.REMINDERS_VEGTABLE_BOX = `🌶️🥦🥕 Will ya pick that 896 box this week? 🔥🌶️🔥\n
+Unleash your full potential today!`;
 M.CONFIRM_PICKUP = `will pick up the 🥦🥕🌶️
 \nAll heil to the Königin! 👑`;
 

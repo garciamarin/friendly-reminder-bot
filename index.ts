@@ -67,8 +67,8 @@ bot.onText(/\/reminders-off/, (msg) => {
 const keyboard = {
 	"reply_markup": {
 		"inline_keyboard": [
-			[{ text: "I'll pick the freakin' thing up!", callback_data: 'yes' }],
-			[{ text: 'hell no!', callback_data: 'no' }],
+			[{ text: "I'll pick da thing up!", callback_data: 'yes' }],
+			[{ text: 'not me!', callback_data: 'no' }],
 		]
 	}
 }
@@ -110,8 +110,7 @@ function scheduleReminders() {
 			}
 		} else if (currentDate.getDay() === 5) {
 			// Friday
-			bot.sendMessage(chatId, M.REMINDERS_VEGTABLE_BOX);
-			bot.sendMessage(chatId, "Can you pick the box 896 this week?", keyboard);
+			bot.sendMessage(chatId, M.REMINDERS_VEGTABLE_BOX, keyboard);
 		}
 	};
 
